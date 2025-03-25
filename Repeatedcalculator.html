@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revising</title>
+    <style>
+        body{
+            font-family:arial;
+            font-size:14px;
+        }
+        .container1{
+            background-color: lightgray;
+            width:300px;
+            height:400px;
+            margin-left:200px;
+            margin-top:50px;
+            border: 2px solid gray;
+            border-radius:10px;
+            
+        }
+        .display{
+            background-color: white;
+            margin-left:10px;
+            margin-right:10px;
+            margin-top: 10px;
+            height:20%;
+            border:2px solid gray ;
+            border-radius:5px;
+            margin-bottom:10px;
+            font-size:12px;
+            text-align:right;
+        }
+        .firstbutton,
+        .buttons{
+            margin-left:10px;
+            margin-right:10px;
+        }
+        .firstbutton{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap:5px;
+            margin-bottom:10px;
+            
+        }
+        .buttons{
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr 1fr;
+            gap:5px;
+            
+        }
+        button{
+            padding:17px;
+            border: 2px solid gray;
+            border-radius:5px;
+            font-weight: bold;
+            font-size:12px;
+        }
+        .clear{
+            background-color:lightpink;
+        }
+        .delete{
+            background-color:rgb(195, 15, 195);
+        }
+        .btn:hover{
+            background-color:gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container1">
+        <div class="display">
+            <p id="question"></p>
+            <p id="answer"></p>
+        </div>
+        <div class="firstbutton">
+            <button class="btn clear" onclick="deleteval()">CLEAR</button>
+            <button class="btn delete" onclick="deletelast()">DELETE</button>
+        </div>
+        <div class="buttons">
+            <button class="btn" onclick="appendValue('7')">7</button>
+            <button class="btn" onclick="appendValue('8')">8</button>
+            <button class="btn" onclick="appendValue('9')">9</button>
+            <button class="btn" onclick="appendValue('/')">/</button>
+
+            <button class="btn" onclick="appendValue('4')">4</button>
+            <button class="btn" onclick="appendValue('5')">5</button>
+            <button class="btn" onclick="appendValue('6')">6</button>
+            <button class="btn" onclick="appendValue('*')">*</button>
+
+            <button class="btn" onclick="appendValue('1')">1</button>
+            <button class="btn" onclick="appendValue('2')">2</button>
+            <button class="btn" onclick="appendValue('3')">3</button>
+            <button class="btn" onclick="appendValue('-')">-</button>
+
+            <button class="btn" onclick="appendValue('.')">.</button>
+            <button class="btn" onclick="appendValue('0')">0</button>
+            <button class="btn equal" onclick="calculate()">=</button>
+            <button class="btn" onclick="appendValue('+')">+</button>
+        </div>
+    </div>
+    <script>
+        let questionDisplay = document.getElementById("question");
+        let answerDisplay = document.getElementById("answer");
+        function appendValue(value){
+            questionDisplay.textContent += value;
+        }
+        function deleteval(){
+            questionDisplay.textContent=" ";
+            answerDisplay.textContent=" ";
+        }
+        function deletelast(){
+            questionDisplay.textContent=questionDisplay.textContent.slice(0,-1);
+        }
+        function calculate(){
+            try{
+                answerDisplay.textContent=eval(questionDisplay.textContent)
+            }
+            catch{
+                answerDisplay.textContent="error"
+            }
+        }
+    </script>
+</body>
+</html>
